@@ -21,7 +21,7 @@ func solution(_ stones:[Int], _ k:Int) -> Int {
     return answer
 }
 
-struct Queue<T> {
+fileprivate struct Queue<T> {
     private var array: [T]
     private var head = 0
 
