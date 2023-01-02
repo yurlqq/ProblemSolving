@@ -3,7 +3,7 @@ import Foundation
 func solution(_ fees:[Int], _ records:[String]) -> [Int] {
     var informations: [String: [Int]] = records.reduce(into: [:]) { record, str in
         let information = str.components(separatedBy: " ")
-        let time = information[0].convertedToInt()
+        let time = information[0].IntValue!
         let carNumber = information[1]
         
         record[carNumber, default: []].append(time)
@@ -36,10 +36,15 @@ func solution(_ fees:[Int], _ records:[String]) -> [Int] {
 }
 
 extension String {
-    func convertedToInt() -> Int {
+    var IntValue: Int? {
         let result = self.components(separatedBy: ":")
-        let hours = Int(result[0])!
-        let minutes = Int(result[1])!
+        if result.count != 2 { return nil }
+        
+        guard let hours = Int(result[0])
+        else { return nil }
+        
+        guard let minutes = Int(result[1])
+        else { return nil }
         
         return hours * 60 + minutes
     }
